@@ -29,3 +29,12 @@ O uso da linguagem Python foi uma escolha arbitraria, queriamos ter um ponto de 
 ---
 
 ## Estrutura do ambiente de referência:
+
+| Desc                                         | Path        | Porta | Função                                                                                                            |
+|----------------------------------------------|-------------|-------|-------------------------------------------------------------------------------------------------------------------|
+| Endpoint com loadbalancer da aplicação flask | /           | 80    | Aplicação rolar dados, retorna um núm. randômico entre 1 e 6                                                      |
+| Endpoint com loadbalancer da aplicação flask | /metrics    | 80    | Retorna métricas a partir da biblioteca prometheus-flask-exporter                                                 |
+| Endpoint/porta do prometheus                 | /graph      | 80    | prometheus rodando em contêiner com ingestão das métricas da aplicação flask                                      |
+| Endpoint/porta do grafana                    | /           | 3000  | grafana rodando em contêiner para criação dos dashboard e sua visão de observabilidade (usuário e senha admin)    |
+| Endpoint/porta do node-exporter              | /metrics    | 9100  | node-exporter rodando em contêiner com ingestão das métricas da EC2 que sustenta a stack com grafana e prometheus |
+| Endpoint/porta do cAdvisor                   | /containers | 8080  | cAdvisor rodando em contêiner com ingestão das métricas dos outros componentes da stack                           |

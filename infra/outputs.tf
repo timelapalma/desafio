@@ -18,10 +18,6 @@ output "prometheus_endpoint_grafana" {
   value = "http://${aws_instance.prometheus.public_dns}:3000"
 }
 
-output "prometheus_endpoint_alertmanager" {
-  value = "http://${aws_instance.prometheus.public_dns}:9093"
-}
-
 output "prometheus_endpoint_node-exporter" {
   value = "http://${aws_instance.prometheus.public_dns}:9100"
 }
