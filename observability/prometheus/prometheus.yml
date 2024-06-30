@@ -1,0 +1,66 @@
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets: ["alertmanager:9093"]
+
+rule_files:
+  - 'rules.yml'
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['localhost:9090']
+
+  - job_name: 'cAdvisor'
+    scrape_interval: 5s
+    static_configs:
+    - targets: ['cadvisor:8080']
+
+  - job_name: 'node'
+    ec2_sd_configs:
+      - region: us-east-1
+        port: 9100
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    relabel_configs:
+      # Use the instance ID as the instance label
+      - source_labels: [__meta_ec2_instance_id]
+        target_label: instance
+      - source_labels: [__meta_ec2_tag_env]
+        target_label: environment
+      - source_labels: [__meta_ec2_tag_role]
+        target_label: role
+      # Drop all other tags
+      - action: labeldrop
+        regex: '(__meta_ec2_tag.+)'
+      # Keep labels from ec2 discovered instances except for droped
+      - action: labelmap
+        regex: '__meta_ec2_(.+)'
+
+  - job_name: 'ec2-application'
+    ec2_sd_configs:
+      - region: us-east-1
+        port: 8080
+    scrape_interval: 30s
+    metrics_path: '/metrics'
+    relabel_configs:
+      # Only monitor instances with tag role and value "app"
+      - source_labels: [__meta_ec2_tag_role]
+        regex: "application"
+        action: keep
+      - source_labels: [__meta_ec2_instance_id]
+        target_label: instance
+      - source_labels: [__meta_ec2_tag_application_id]
+        target_label: id
+      - source_labels: [__meta_ec2_tag_application_version]
+        target_label: version
+      # Drop all other tags
+      - action: labeldrop
+        regex: '(__meta_ec2_tag.+)'
+      # Keep labels from ec2 discovered instances except for droped
+      - action: labelmap
+        regex: '__meta_ec2_(.+)'
