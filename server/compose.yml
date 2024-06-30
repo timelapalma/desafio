@@ -5,10 +5,9 @@ services:
   server:
     image: sample/server
     build:
-      context: backend
-      dockerfile: ../build
+      context: build
     ports:
-      - 8080:8080      
+      - 5000:5000      
     restart: unless-stopped 
     networks:
        server:
@@ -30,23 +29,6 @@ services:
       - '--collector.systemd'
       - '--collector.processes'
     restart: unless-stopped 
-    networks:
-       server:
-
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.47.2
-    ports:
-      - 8080:8080
-    volumes:
-      - '/:/rootfs:ro'
-      - '/var/run:/var/run:ro'
-      - '/sys:/sys:ro'
-      - '/var/lib/docker/:/var/lib/docker:ro'
-      - '/dev/disk/:/dev/disk:ro'
-    devices:
-      - '/dev/kmsg'
-    restart: unless-stopped
-    privileged: true
     networks:
        server:
 
