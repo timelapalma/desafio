@@ -15,4 +15,4 @@ runcmd:
   - chmod +x /usr/local/bin/docker-compose
   - git clone  --branch main https://github.com/timelapalma/desafio /home/ubuntu/desafio
   - chown -R ubuntu:ubuntu /home/ubuntu/desafio
-  - sudo /usr/local/bin/docker-compose -f /home/ubuntu/desafio/server/compose.yml up -d
+  - sudo /usr/local/bin/docker-compose -f /home/ubuntu/desafio/observability/compose.yml up -d

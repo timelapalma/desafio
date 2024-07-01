@@ -3,7 +3,7 @@ resource "aws_launch_configuration" "lab" {
   image_id              = data.aws_ami.ubuntu.id
   instance_type         = "t3.medium"
   user_data             = "${file("templates/server.yaml")}"
-  security_groups       = [aws_security_group.asg_lab]
+  security_groups       = [aws_security_group.asg_lab.id]
   key_name              = "vockey"
   iam_instance_profile  = "LabInstanceProfile"
 
@@ -33,7 +33,7 @@ resource "aws_lb" "server" {
   name               = "asg-server-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.asg_lab_lb]
+  security_groups    = [aws_security_group.asg_lab_lb.id]
   subnets            = module.vpc.public_subnets
 }
 
