@@ -48,21 +48,31 @@ resource "aws_lb" "monitoring" {
   subnets            = module.vpc.public_subnets
 }
 
-# --- Prometheus Target
 
-resource "aws_lb_listener" "prometheus" {
+resource "aws_lb_listener" "monitoring_http" {
   load_balancer_arn = aws_lb.monitoring.arn
   port              = 80
   protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.prometheus.arn
+    target_group_arn = aws_lb_target_group.monitoring.arn
   }
 }
 
-resource "aws_lb_target_group" "prometheus" {
-  name     = "asg-prometheus"
+resource "aws_lb_listener" "monitoring_3000" {
+  load_balancer_arn = aws_lb.monitoring.arn
+  port              = 3000
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.monitoring.arn
+  }
+}
+
+resource "aws_lb_target_group" "monitoring" {
+  name     = "asg-monitoring"
   port     = 80
   protocol = "HTTP"
   vpc_id   = module.vpc.vpc_id
@@ -78,42 +88,7 @@ resource "aws_lb_target_group" "prometheus" {
 }
 
 
-resource "aws_autoscaling_attachment" "prometheus" {
+resource "aws_autoscaling_attachment" "monitoring" {
   autoscaling_group_name = aws_autoscaling_group.monitoring.id
-  alb_target_group_arn   = aws_lb_target_group.prometheus.arn
-}
-
-# --- Grafana Target
-
-resource "aws_lb_listener" "grafana" {
-  load_balancer_arn = aws_lb.monitoring.arn
-  port              = 3000
-  protocol          = "HTTP"
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.grafana.arn
-  }
-}
-
-resource "aws_lb_target_group" "grafana" {
-  name     = "asg-grafana"
-  port     = 3000
-  protocol = "HTTP"
-  vpc_id   = module.vpc.vpc_id
-
-  health_check {
-    path                = "/healthz"
-    port                = 3000
-    protocol            = "HTTP"
-    healthy_threshold   = 3
-    unhealthy_threshold = 3
-    matcher             = "200"
-  }
-}
-
-
-resource "aws_autoscaling_attachment" "prometheus" {
-  autoscaling_group_name = aws_autoscaling_group.monitoring.id
-  alb_target_group_arn   = aws_lb_target_group.grafana.arn
+  alb_target_group_arn   = aws_lb_target_group.monitoring.arn
 }
