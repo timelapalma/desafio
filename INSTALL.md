@@ -1,4 +1,10 @@
-A partir do cloud shell da conta de testes na AWS execute:
+# Processo de configuração:
+
+Toda a configuração do ambiente de referência para o desafio foi entregue dentro de duas automações simples com docker compose, disponíveis nas pastas [observability](https://github.com/timelapalma/desafio/tree/main/observability) e [server](https://github.com/timelapalma/desafio/tree/main/server), o ambiente foi estruturado para uma entrega dentro da AWS, mas você pode ajustar para uma execução local se preferir, (atente-se para o sistema de service discovery na configuração do prometheus que provavelmente deverá ser ajustado);
+
+# Instalação na conta de testes na AWS
+
+Apartir do cloud shell da conta de testes na AWS execute:
 
 1.1. Cópia do repositório git:
 ```sh
@@ -28,3 +34,9 @@ terraform apply
 ```
 
 > Será configurada uma nova instancia via terraform com o prometheus e um security group rodando a aplicação de testes, aguarda até o final do setup e acesse as URLs mostradas no Output do terraform.
+
+---
+
+lapalma-challenge@uolinc.com
+
+**La Palma**

@@ -16,13 +16,15 @@ Há uma configuração básica para exposição de métricas implementada usando
 
 ## O que precisa ser desenvolvido?
 
-Sua missão pode ser resumida em 1 tweet: **Utilizar pelo menos um dos três pilares de observabilidade para criar uma visão da saúde de uma aplicação.** 
+Uma arquitetura baseada em ferramentas de observabilidade, que a partir de pelo menos um dos três pilares de observabilidade promova uma visão da saúde de uma aplicação simples escrita em Python (Você pode alterar a linguagem se quiser);
 
-Aqui o conceito de saúde é algo que queremos discutir, por isso nada será imposto, você é o arquiteto, e dono do ambiente, então utilize este espaço para mostrar sua ideia de como avaliaria a saúde de uma aplicação, e claro é ;liberado o uso de mais de um pilar, a criação de alertas, a exploração de abordagens conhecidas como Golden Signals, Red Metrics, vale tudo!
+Aqui o conceito de saúde é algo que queremos discutir, por isso nada será imposto, você é o arquiteto, e dono do ambiente, então utilize este espaço para mostrar sua ideia de como avaliaria a saúde de uma aplicação, e claro é liberado o uso de mais de um pilar, a criação de alertas, a exploração de abordagens conhecidas como Golden Signals, Red Metrics, vale tudo!
 
-### Lembre-se, a solução e a aplicação é sua... ###
+### Lembre-se, a solução e a aplicação é sua
 
-O uso da linguagem Python foi uma escolha arbitraria, queriamos ter um ponto de partida que possibilitasse uma arquitetura simples, e demandasse menos do seu tempo, mas pode ser mudada, se preferir troque a linguagem, troque a solução inteira! sua concepção sobre observabilidade é o que conta aqui.
+O uso da linguagem Python foi uma escolha arbitraria, queriamos ter um ponto de partida que possibilitasse uma arquitetura simples, e demandasse menos do seu tempo, mas pode ser mudada, se preferir troque a linguagem, troque a solução inteira, mantendo apenas a funcionalidade simples: A aplicação deve receber uma solitação via protocolo HTTP e devolver um número randomico entre 1 e 6, (um rolar de dados).
+
+Sua concepção sobre observabilidade é o que conta aqui.
 
 **Até o nosso próximo café ou cerveja!**
 
@@ -36,5 +38,11 @@ O uso da linguagem Python foi uma escolha arbitraria, queriamos ter um ponto de 
 | Endpoint com loadbalancer da aplicação flask | /metrics    | 80    | Retorna métricas a partir da biblioteca prometheus-flask-exporter                                                 |
 | Endpoint/porta do prometheus                 | /graph      | 80    | prometheus rodando em contêiner com ingestão das métricas da aplicação flask                                      |
 | Endpoint/porta do grafana                    | /           | 3000  | grafana rodando em contêiner para criação dos dashboard e sua visão de observabilidade (usuário e senha admin)    |
-| Endpoint/porta do node-exporter              | /metrics    | 9100  | node-exporter rodando em contêiner com ingestão das métricas da EC2 que sustenta a stack com grafana e prometheus |
-| Endpoint/porta do cAdvisor                   | /containers | 8080  | cAdvisor rodando em contêiner com ingestão das métricas dos outros componentes da stack                           |
+| Endpoint/porta do node-exporter              | /metrics    | 9100  | node-exporter rodando em contêiner com ingestão das métricas da EC2 que sustenta a stack com grafana e prometheus, enpoint interno acessível dentro da VPC e com as métricas ingeridas no datasource default do grafana |
+| Endpoint/porta do cAdvisor                   | /containers | 8080  | cAdvisor rodando em contêiner com ingestão das métricas dos outros componentes da stack, enpoint interno acessível dentro da VPC e com as métricas ingeridas no datasource default do grafana                           |
+
+---
+
+lapalma-challenge@uolinc.com
+
+**La Palma**
