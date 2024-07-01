@@ -73,7 +73,7 @@ resource "aws_lb_listener" "lab" {
 
 resource "aws_lb_target_group" "lab" {
   name     = "asg-lab"
-  port     = 5000
+  port     = 8080
   protocol = "HTTP"
   vpc_id   = module.vpc.vpc_id
 }
