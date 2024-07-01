@@ -2,6 +2,16 @@ version: '3.8'
   
 services:
 
+  server:
+    image: server
+    build:
+      context: build
+    ports:
+      - 5000:5000      
+    restart: unless-stopped 
+    networks:
+       observability:
+
   prometheus:
     image: prom/prometheus:v2.49.1
     volumes:
@@ -9,7 +19,7 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus/rules.yml:/etc/prometheus/rules.yml
     ports:
-      - 80:9090
+      - 9090:9090
     restart: unless-stopped
     networks:
        observability:
