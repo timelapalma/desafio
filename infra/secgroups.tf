@@ -1,8 +1,8 @@
 
 # Firewall Rules
 
-resource "aws_security_group" "lab_prometheus" {
-  name = "asg-lab-prometheus"
+resource "aws_security_group" "monitoring_server" {
+  name = "asg-monitoring-server"
   ingress {
     from_port   = 80
     to_port     = 80
@@ -69,7 +69,7 @@ resource "aws_security_group" "lab_server" {
     from_port   = 9100
     to_port     = 9100
     protocol    = "tcp"
-    security_groups = [aws_security_group.lab_prometheus.id]
+    security_groups = [aws_security_group.monitoring_server.id]
   }  
 
   egress {
@@ -80,7 +80,7 @@ resource "aws_security_group" "lab_server" {
   }
 
   depends_on = [
-    aws_security_group.lab_prometheus
+    aws_security_group.monitoring_server
   ]
 
   vpc_id = module.vpc.vpc_id
@@ -107,7 +107,7 @@ resource "aws_security_group" "lab_lb" {
 }
 
 resource "aws_security_group" "monitoring_lb" {
-  name = "asg-lab-lb"
+  name = "asg-monitoring-lb"
   ingress {
     from_port   = 80
     to_port     = 80

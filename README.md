@@ -20,6 +20,13 @@ Sua missão pode ser resumida em 1 tweet:
 
 Os detalhes técnicos sobre o que pode ser feito a partir dessa missão devem ser [consultados aqui](https://github.com/timelapalma/desafio/blob/main/DOC.md);
 
+Ao final do processo bateremos um papo sobre a infraestrutura que encontrou, como foi criada a sua visão de observabilidade e hevarão duas perguntas perincipais:
+
+1. O que você melhoraria se tivesse 1 semana para mexer neste projeto?
+2. O que você melhoraria se tivesse 1 mês para mexer neste projeto?
+
+*Além de outras perguntas e conversas baseadas no seu trabalho.*
+
 ---
 
 lapalma-challenge@uolinc.com
