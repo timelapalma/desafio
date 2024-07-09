@@ -2,7 +2,7 @@
 
 Repositório dedicado à construção da estrutura para um desafio técnico, focando em conceitos de obsaervability e na abordagem e mentalidade do nosso novo colega de equipe ou como chamamos por aqui, nosso novo conselheiro.
 
-![monitoring gif]([https://github.com/timelapalma/desafio/blob/578441b4bee249240909d1f3f5cb13135f9d49cc/img/monitoring.gif)
+![monitoring gif](img/monitoring.gif)
 
 ## O que é o La Palma?
 
