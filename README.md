@@ -18,24 +18,23 @@ Para este desafio, sua missão pode ser resumida em 1 tweet:
 
 ---
 
-## O que deve ser entregue? <img align="left" alt="JonesTip" height="100" style="border-radius:0px;" src="imgsrc/JonesTip.gif"> 
+## O que deve ser entregue? <img align="center" alt="JonesTip" height="100" style="border-radius:0px;" src="imgsrc/JonesTip.gif"> 
 
 
 **Requisitos Mínimos:** A proposta é que seja apresentada uma arquitetura baseada em ferramentas de observabilidade, nessa entrega a partir de pelo menos um dos três pilares de observabilidade promova uma visão da saúde de uma aplicação simples escrita em python, você pode alterar a linguagem se quiser, desde que, mantenha a funcionalidade atual da aplicação;
 
 Aqui o conceito de saúde é algo que queremos discutir, por isso nada será imposto, você é o arquiteto, e dono do ambiente, então utilize este espaço para mostrar sua ideia de como avaliaria a saúde de uma aplicação, e claro é liberado o uso de mais de um pilar, a criação de alertas, implantação de novos coletores, novas ferramentas a exploração de abordagens conhecidas como Golden Signals, Red Metrics, vale tudo. **sua concepção sobre observabilidade é o que conta.**
 
-## Onde deve ser entregue? <img align="left" alt="GirlTip" height="100" style="border-radius:0px;" src="imgsrc/GirlTip.gif"> 
+## Onde deve ser entregue? <img align="center" alt="GirlTip" height="100" style="border-radius:0px;" src="imgsrc/GirlTip.gif"> 
 
 
 **Onde posso construir minha solução?** Forneceremos uma conta de testes em um ambiente de nuvem, com algumas limitações, como gestão de IAM e um máximo de 100 dólares de crédito. Mas isso será suficiente, pois o objetivo final não é a complexidade do ambiente entregue, e sim a estratégia e as escolhas na construção.
 
 **Você decide se quer contruir do zero ou partir de nosso modelo:** Optamos por criar uma arquitetura de referência que representa uma amostra do nosso ambiente. Isso facilitará sua compreensão do dia a dia caso você se junte ao time. No entanto, você pode optar por criar sua própria solução, usando as ferramentas que já conhece e mostrando sua visão de observabilidade.
 
-
 ---
 
-## Arquitetura Proposta: <img align="left" alt="Lego" height="150" style="border-radius:0px;" src="imgsrc/lego.gif?raw=true"> 
+## Arquitetura Proposta: <img align="center" alt="Lego" height="150" style="border-radius:0px;" src="imgsrc/lego.gif"> 
 
 O ambiente criado para este desafio é composto por uma aplicação Python simples, entregue em uma instância EC2 usando docke compose, a aplicação utiliza o framework flask e está encapsulada em Docker.
 
