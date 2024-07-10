@@ -40,7 +40,44 @@ O ambiente criado para este desafio é composto por uma aplicação Python simpl
 
 Há uma configuração básica para exposição de métricas implementada usando o [prometheus flask exporter](https://pypi.org/project/prometheus-flask-exporter/), essa solução pode ser consultada na pasta [observability/build](https://github.com/timelapalma/desafio/tree/main/observability/build), aqui o uso da linguagem python foi uma escolha arbitraria, queriamos ter um ponto de partida que possibilitasse uma arquitetura simples, e demandasse menos do seu tempo.
 
----
+## Instalação na conta de testes na AWS
+
+Toda a configuração do ambiente de referência para o desafio foi entregue dentro de uma automação com docker compose, disponível na pasta [observability](https://github.com/timelapalma/desafio/tree/main/observability), o ambiente foi estruturado para uma entrega dentro da AWS, mas você pode ajustar para uma execução local se preferir.
+
+Ao acessar a conta na AWS inicie uma sessão no serviço cloud shell:
+
+![cloudshell gif](imgsrc/cloudshell.gif?raw=true)
+
+Apartir do cloud shell execute:
+
+1.1. Cópia do repositório git:
+```sh
+# Git
+git clone https://github.com/timelapalma/desafio.git
+```
+
+1.2. Instalação das dependências:
+```sh
+sudo yum install -y yum-utils shadow-utils && \
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo && \
+sudo yum -y install terraform
+```
+
+1.3. Inicie o terraform:
+
+```sh
+cd desafio/infra
+
+terraform init
+```
+
+1.4. Verifique a partir do plan que o modelo fara a entrega de uma instancia ubuntu com base no template de [cloud-init](https://cloudinit.readthedocs.io/en/latest/) alocado no diretório "iac/templates" bem como as regras de liberação dos grupos de segurança para comunicacão entre o prometheus e as aplicações
+
+```sh
+terraform apply
+```
+
+> Será configurada uma nova instancia via terraform com o prometheus e um security group rodando a aplicação de testes, aguarda até o final do setup e acesse as URLs mostradas no Output do terraform.
 
 ## Estrutura do ambiente de referência:
 
@@ -52,15 +89,8 @@ Conforme citado para o desafio criamos uma arquitetura simples de referência qu
 | Server       | Endpoint com loadbalancer da aplicação flask | /metrics    | 80    | Retorna métricas a partir da biblioteca prometheus-flask-exporter           |
 | Grafana      | Endpoint com loadbalancer do Grafana         | /           | 80    | Grafana rodando em contêiner com ingestão das métricas da aplicação flask   |
 
-Utilizando o endereço público da instância na AWS também é possível acessar alguns endpoints:
-
-| Descrição                                         | Path        | Porta | Função                                                                                                            |
-|----------------------------------------------|-------------|-------|-------------------------------------------------------------------------------------------------------------------|
-| Endpoint/porta do node-exporter              | /metrics    | 9100  | node-exporter rodando em contêiner com ingestão das métricas da EC2 que sustenta a stack com grafana e prometheus, enpoint interno acessível dentro da VPC e com as métricas ingeridas no datasource default do grafana |
-| Endpoint/porta do cAdvisor                   | /containers | 8080  | cAdvisor rodando em contêiner com ingestão das métricas dos outros componentes da stack, enpoint interno acessível dentro da VPC e com as métricas ingeridas no datasource default do grafana                           |
-
-Caso ocorra alguma dúvida no processo de subida do ambiente, consulte no arquivo [INSTALL.md](https://github.com/timelapalma/desafio/blob/main/INSTALL.md);
+Utilizando o endereço público da instância na AWS também é possível acessar os endpoint do node-exporter na path /metrics e porta 9100 e o endpoint do cAdvisor na path /containers e porta 8080.
 
 ---
 
-**___Até o nosso próximo café ou cerveja, onde discutiremos a sua solução**  <img align="left" alt="Foco" height="50" style="border-radius:0px;" src="imgsrc/coffee.gif?raw=true"> <img align="left" alt="Foco" height="50" style="border-radius:0px;" src="imgsrc/beer.gif?raw=true">
+**Até o nosso próximo café ou cerveja, onde discutiremos a sua solução**  <img align="left" alt="Foco" height="50" style="border-radius:0px;" src="imgsrc/coffee.gif?raw=true"> <img align="left" alt="Foco" height="50" style="border-radius:0px;" src="imgsrc/beer.gif?raw=true">
