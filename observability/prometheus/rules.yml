@@ -1,14 +1,6 @@
 groups:
   - name: default
-    rules:    
-      - alert: NodeExporterDown
-        expr:  up{job="node"} != 1
-        for: 1m
-        labels:
-          severity: high
-        annotations:
-          summary: Node exporter is not responding at instance "{{ $labels.instance }}"
-
+    rules:
       - alert: PrometheusTargetMissing
         expr: up == 0
         for: 0m

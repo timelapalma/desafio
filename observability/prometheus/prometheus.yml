@@ -19,7 +19,12 @@ scrape_configs:
     static_configs:
     - targets: ['server:5000']
 
-  - job_name: 'node'
+  - job_name: 'node-exporter'
+    scrape_interval: 30s
+    static_configs:
+    - targets: ['node-exportewr:9100']
+
+  - job_name: 'node-discovery'
     ec2_sd_configs:
       - region: us-east-1
         port: 9100
