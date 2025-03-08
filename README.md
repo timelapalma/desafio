@@ -14,7 +14,14 @@ Decidimos criar um desafio não como um teste, mas como um processo de apresenta
 
 Para este desafio, sua missão pode ser resumida em 1 tweet:
 
-**Utilizar pelo menos um dos três pilares de observabilidade para criar uma visão da saúde de uma aplicação.** 
+**Criar uma visão de observabilidade sobre uma aplicação.** 
+
+Para tentar dar um pouco mais de contexto esperamos que:
+
+- Em seu projeto construa alternativas para avaliarmos se a aplicação está disponível considerando estratégia como Golden Signals;
+- Também seria interessante que possamos validar estados internos e comportamentos a partir de rastros, traces ou estratégis similares;
+- O uso de ferramentas open source não é obrigatório mas será bem bacana para a discussão, principalmente envolvendo o Open Telemetry;
+- Fique a vontade para mudar a estratégia de instrumentação, trocar o framework, utilizar sdks ou mudar a aplicação inteira se preferir (Trabalharemos com base em sua lógica na nossa conversa);
 
 ---
 
@@ -28,9 +35,9 @@ Aqui o conceito de saúde é algo que queremos discutir; por isso, nada será im
 ## Onde deve ser entregue? <img align="center" alt="GirlTip" height="100" style="border-radius:0px;" src="imgsrc/GirlTip.gif"> 
 
 
-**Onde posso construir minha solução?** Forneceremos uma conta de testes em um ambiente de nuvem, com algumas limitações, como gestão de IAM e um máximo de 100 dólares de crédito. Mas isso será suficiente, pois o objetivo final não é a complexidade do ambiente entregue, e sim a estratégia e as escolhas na construção.
+**Onde posso construir minha solução?** Forneceremos uma conta de testes em um ambiente de nuvem, com algumas limitações, como gestão de IAM e um máximo de 100 dólares de crédito. Mas isso será suficiente, pois o objetivo final não é a complexidade do ambiente entregue, e sim a estratégia e as escolhas na construção, alternativamente você opinar por construir sua solução em uma estrutura própria usando Docker Compose.
 
-**Você decide se quer construir do zero ou partir de nosso modelo:** Optamos por criar uma arquitetura de referência que representa uma amostra do nosso ambiente. Isso facilitará sua compreensão do dia a dia caso você se junte ao time. No entanto, você pode optar por criar sua própria solução, usando as ferramentas que já conhece e mostrando sua visão de observabilidade.
+**Você decide se quer construir do zero ou partir de nosso modelo:** Optamos por criar uma arquitetura de referência que representa uma amostra do nosso ambiente. Isso facilitará sua compreensão do dia a dia caso você se junte ao time. No entanto, você pode e deve se possível optar por criar sua própria solução, usando as ferramentas que já conhece e mostrando sua visão de observabilidade.
 
 ---
 
