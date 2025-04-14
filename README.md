@@ -1,51 +1,47 @@
-> Repositório dedicado à construção da estrutura para um desafio técnico, focando em conceitos de obsaervability e na abordagem e mentalidade do nosso novo colega de equipe ou como chamamos por aqui, nosso novo conselheiro.
+> Repositório dedicado à criação da estrutura para um desafio técnico, com foco em conceitos de observabilidade e na abordagem mental do nosso novo colega de equipe, carinhosamente chamado de novo membro do conselho
 
 ## O que é o La Palma?
 
-O La Palma é um time multidisciplinar, preocupado com a observabilidade dos produtos que provê e mantêm ferramentas e técnicas diferentemente de monitorações isoladas, pontuais ou reativas, nosso time busca ouvir e conectar áreas de funcionalidades e disponibilizar ferramentas escaláveis e reutilizáveis.
+O La Palma é uma equipe multidisciplinar comprometida com a observabilidade dos produtos da empresa. Diferente de monitoramentos isolados, pontuais ou reativos, buscamos integrar e conectar diferentes áreas funcionais, proporcionando ferramentas escaláveis e reutilizáveis.
 
-**Por que "La Palma"?** La Palma é uma ilha pertencente ao arquipélago das Ilhas Canárias, no Oceano Atlântico, devido à sua localização e suas altas montanhas, a ilha abriga inúmeros observatórios, incluindo o sítio astronômico com a maior concentração de telescópios do Hemisfério Norte.
+**Por que "La Palma"?** La Palma é uma ilha do arquipélago das Ilhas Canárias, no Oceano Atlântico. Devido à sua localização e altitudes elevadas, abriga diversos observatórios, incluindo o sítio astronômico com a maior concentração de telescópios do Hemisfério Norte.
 
 ![monitoring](imgsrc/monitoring.png?raw=true)
 
 ## A entrevista não é o bastante?
 
-Decidimos criar um desafio não como um teste, mas como um processo de apresentação, a ideia é que, nesta etapa, você entenda um pouco das arquiteturas e estruturas usadas em nossos sistemas e, ao mesmo tempo, possamos ver como você lida com problemas e "pensa" observabilidade. Em resumo, queremos garantir que ambos, empresa e candidato, estejam na mesma página, facilitando a adaptação e aumentando as chances de sucesso.
+Optamos por criar um desafio que não serve apenas como um teste, mas como uma oportunidade de apresentação. Nesta etapa, queremos que você compreenda um pouco das arquiteturas e estruturas utilizadas em nossos sistemas e, ao mesmo tempo, observar como você aborda problemas e a sua percepção sobre observabilidade. Em suma, nosso objetivo é garantir que tanto a empresa quanto o candidato estejam alinhados, facilitando a adaptação e aumentando as chances de sucesso.
 
 Para este desafio, sua missão pode ser resumida em 1 tweet:
 
 **Criar uma visão de observabilidade sobre uma aplicação.** 
 
-Para tentar dar um pouco mais de contexto esperamos que:
+Para oferecer um contexto mais claro, esperamos que você:
 
-- Em seu projeto construa alternativas para avaliarmos se a aplicação está disponível considerando estratégia como Golden Signals;
-- Também seria interessante que possamos validar estados internos e comportamentos a partir de rastros, traces ou estratégis similares;
-- O uso de ferramentas open source não é obrigatório mas será bem bacana para a discussão, principalmente envolvendo o Open Telemetry;
-- Fique a vontade para mudar a estratégia de instrumentação, trocar o framework, utilizar sdks ou mudar a aplicação inteira se preferir (Trabalharemos com base em sua lógica na nossa conversa);
+- Em seu projeto, desenvolva alternativas para avaliarmos a disponibilidade da aplicação com base nos conceitos dos "Golden Signals".
+- Também será interessante verificar estados internos e comportamentos por meio de rastros (traces), especialmente na avaliação de um perfil sênior de arquiteto.
+- O uso de ferramentas open source não é obrigatório, mas seria enriquecedor para a discussão, especialmente considerando que elas estarão presentes em seu dia a dia, como o OpenTelemetry.
+- Sinta-se à vontade para alterar a estratégia de instrumentação, trocar o framework, utilizar SDKs ou até mesmo reformular a aplicação inteira, caso prefira.
 
 ---
 
 ## O que deve ser entregue? <img align="center" alt="JonesTip" height="100" style="border-radius:0px;" src="imgsrc/JonesTip.gif"> 
 
+O objetivo é apresentar uma arquitetura baseada em ferramentas de observabilidade. Nesta entrega, você deverá proporcionar uma visão da saúde de uma aplicação simples, capaz de receber uma requisição HTTP e responder com um valor entre 1 e 6 (simulando um lançamento de dados).
 
-**Requisitos Mínimos:** A proposta é que, seja apresentada uma arquitetura baseada em ferramentas de observabilidade, nessa entrega a partir de pelo menos um dos três pilares de observabilidade promova uma visão da saúde de uma aplicação simples escrita em Python, você pode alterar a linguagem se quiser, desde que, mantenha a funcionalidade atual da aplicação;
-
-Aqui o conceito de saúde é algo que queremos discutir; por isso, nada será imposto, você é o arquiteto, e dono do ambiente, então utilize este espaço para mostrar sua ideia de como avaliaria a saúde de uma aplicação, é liberado o uso de mais de um pilar, a criação de alertas, implantação de novos coletores, novas ferramentas a exploração de abordagens conhecidas como Golden Signals, Red Metrics, vale tudo. **sua concepção sobre observabilidade é o que conta.**
+O conceito de saúde é um aspecto que gostaríamos de discutir, portanto, não iremos impor restrições. Você é o arquiteto e o responsável pelo ambiente, então utilize este espaço para demonstrar sua visão sobre como avaliaria a saúde da sua aplicação. Sinta-se à vontade para empregar mais de um pilar, implementar alertas, adicionar novos coletores, utilizar novas ferramentas e explorar abordagens conhecidas, como Golden Signals e Red Metrics, ou até ajustar a aplicação base requerida adicionando por exemplo, uma camada de persistência para armazenar o resultado de cada consulta executada (o valor obtido com o rolar de dados). **A sua interpretação sobre observabilidade é o que realmente importa.**
 
 ## Onde deve ser entregue? <img align="center" alt="GirlTip" height="100" style="border-radius:0px;" src="imgsrc/GirlTip.gif"> 
 
+**Onde posso construir minha solução?** Forneceremos uma conta de testes em um ambiente de nuvem, que terá algumas limitações, como a gestão de IAM e um crédito máximo de 100 dólares. No entanto, isso será suficiente, pois nosso foco não está na complexidade do ambiente fornecido, mas sim na estratégia e nas escolhas que você fará durante a construção. 
 
-**Onde posso construir minha solução?** Forneceremos uma conta de testes em um ambiente de nuvem, com algumas limitações, como gestão de IAM e um máximo de 100 dólares de crédito. Mas isso será suficiente, pois o objetivo final não é a complexidade do ambiente entregue, e sim a estratégia e as escolhas na construção, alternativamente você opinar por construir sua solução em uma estrutura própria usando Docker Compose.
+Alternativamente, você pode optar por desenvolver sua solução em uma infraestrutura própria usando Docker Compose. Durante o processo, você será questionado teoricamente sobre alternativas para garantir a resiliência da arquitetura escolhida em um cenário produtivo hipotético.
 
-**Você decide se quer construir do zero ou partir de nosso modelo:** Optamos por criar uma arquitetura de referência que representa uma amostra do nosso ambiente. Isso facilitará sua compreensão do dia a dia caso você se junte ao time. No entanto, você pode e deve se possível optar por criar sua própria solução, usando as ferramentas que já conhece e mostrando sua visão de observabilidade.
-
----
+**Você decide se quer construir do zero ou partir de um modelo:** Criamos uma arquitetura de referência que serve como uma amostra do nosso ambiente. No entanto, você é encorajado a desenvolver sua própria solução, utilizando as ferramentas com as quais já está familiarizado, para demonstrar sua visão de observabilidade.
 
 ## Arquitetura Proposta: <img align="center" alt="Lego" height="150" style="border-radius:0px;" src="imgsrc/lego.gif"> 
 
-O ambiente criado para este desafio é composto por uma aplicação Python simples, entregue em uma instância EC2 usando docke compose, a aplicação utiliza o framework flask e está encapsulada em Docker.
-
-Há uma configuração básica para exposição de métricas implementada usando o [prometheus flask exporter](https://pypi.org/project/prometheus-flask-exporter/), essa solução pode ser consultada na pasta [observability/build](https://github.com/timelapalma/desafio/tree/main/observability/build), aqui o uso da linguagem Python foi uma escolha arbitraria, queríamos ter um ponto de partida que possibilitasse uma arquitetura simples, e demandasse menos do seu tempo.
+O ambiente criado para este desafio é composto por uma aplicação Python simples, entregue em uma instância EC2 usando docker compose, a aplicação utiliza o framework flask e está encapsulada em Docker.
 
 ## Instalação na conta de testes na AWS
 
@@ -95,10 +91,9 @@ Conforme citado para o desafio criamos uma arquitetura simples de referência qu
 | LoadBalancer | Descrição                                    | Path        | Porta | Função                                                                                            |
 | -------------|----------------------------------------------|-------------|-------|---------------------------------------------------------------------------------------------------|
 | Server       | Endpoint com loadbalancer da aplicação flask | /           | 80    | Aplicação rolar dados, retorna um núm. randômico entre 1 e 6                                      |
-| Server       | Endpoint com loadbalancer da aplicação flask | /metrics    | 80    | Retorna métricas a partir da biblioteca prometheus-flask-exporter                                 |
 | Grafana      | Endpoint com loadbalancer do Grafana         | /           | 80    | Grafana rodando em contêiner com ingestão das métricas da aplicação flask (Usuário e Senha admin) |
 
-Utilizando o endereço público da instância na AWS também é possível acessar os endpoints do node-exporter na path /metrics e porta 9100 e o endpoint do cAdvisor na path /containers e porta 8080.
+Utilizando o endereço público da instância na AWS também é possível acessar os endpoints do node-exporter na porta 9100 e o endpoint do cAdvisor na path /containers e porta 8080.
 
 ---
 
