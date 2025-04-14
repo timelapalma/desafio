@@ -91,6 +91,7 @@ Conforme citado para o desafio criamos uma arquitetura simples de referência qu
 | LoadBalancer | Descrição                                    | Path        | Porta | Função                                                                                            |
 | -------------|----------------------------------------------|-------------|-------|---------------------------------------------------------------------------------------------------|
 | Server       | Endpoint com loadbalancer da aplicação flask | /           | 80    | Aplicação rolar dados, retorna um núm. randômico entre 1 e 6                                      |
+| Server       | Endpoint com loadbalancer da aplicação flask | /metrics    | 80    | Retorna métricas a partir da biblioteca prometheus-flask-exporter                                 |
 | Grafana      | Endpoint com loadbalancer do Grafana         | /           | 80    | Grafana rodando em contêiner com ingestão das métricas da aplicação flask (Usuário e Senha admin) |
 
 Utilizando o endereço público da instância na AWS também é possível acessar os endpoints do node-exporter na porta 9100 e o endpoint do cAdvisor na path /containers e porta 8080.
