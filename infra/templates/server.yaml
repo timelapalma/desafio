@@ -1,18 +1,41 @@
 #cloud-config
+package_update: true
+package_upgrade: false
+
 packages:
-  - apt-transport-https
   - ca-certificates
   - curl
-  - gnupg-agent
-  - software-properties-common
+  - gnupg
+  - lsb-release
+  - git
 
 runcmd:
-  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-  - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  - apt-get update -y && apt-get install -y docker-ce docker-ce-cli containerd.io
-  - systemctl start docker && systemctl enable docker
-  - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  - chmod +x /usr/local/bin/docker-compose
-  - git clone  --branch main https://github.com/timelapalma/desafio /home/ubuntu/desafio
-  - chown -R ubuntu:ubuntu /home/ubuntu/desafio
-  - sudo /usr/local/bin/docker-compose -f /home/ubuntu/desafio/observability/compose.yml up -d
+  # Prepare keyring dir
+  - install -m 0755 -d /etc/apt/keyrings
+
+  # Docker official GPG key (no apt-key)
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  - chmod a+r /etc/apt/keyrings/docker.gpg
+
+  # Docker repo
+  - >
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg]
+    https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable"
+    | tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+  # Install Docker Engine + Compose v2 plugin
+  - apt-get update -y
+  - apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+  # Enable docker
+  - systemctl enable --now docker
+
+  # Allow ubuntu user to run docker without sudo
+  - usermod -aG docker ubuntu
+
+  # Clone repo (idempotent-ish)
+  - rm -rf /home/ubuntu/desafio
+  - sudo -u ubuntu -H git clone --branch main https://github.com/timelapalma/desafio /home/ubuntu/desafio
+
+  # Bring up compose using Docker Compose v2
+  - sudo -u ubuntu -H bash -lc 'cd /home/ubuntu/desafio/observability && docker compose -f compose.yml up -d'
